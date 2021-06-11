@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HospitalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AppointmentsTable">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="Purpose" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="VisitSummary" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DoctorsTable">
+    <Key>
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="DoctorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="UserLoginName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MedicationListTable">
+    <Key>
+      <PropertyRef Name="MedicationID" />
+    </Key>
+    <Property Name="MedicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MessagesTable">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MessageTO" Type="String" MaxLength="300" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MessageFROM" Type="String" MaxLength="300" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Message" Type="String" MaxLength="300" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PatientsTable">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="UserLoginName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MedicationID" Type="Int32" Nullable="false" />
+    <Property Name="TestID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestsTable">
+    <Key>
+      <PropertyRef Name="TestID" />
+    </Key>
+    <Property Name="TestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientID" Type="Int32" Nullable="false" />
+    <Property Name="TestResult" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TestDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsersTable">
+    <Key>
+      <PropertyRef Name="UserLoginName" />
+    </Key>
+    <Property Name="UserLoginName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserLoginPass" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="UserLoginType" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="HospitalDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AppointmentsTables" EntityType="Self.AppointmentsTable" />
+    <EntitySet Name="DoctorsTables" EntityType="Self.DoctorsTable" />
+    <EntitySet Name="MedicationListTables" EntityType="Self.MedicationListTable" />
+    <EntitySet Name="MessagesTables" EntityType="Self.MessagesTable" />
+    <EntitySet Name="PatientsTables" EntityType="Self.PatientsTable" />
+    <EntitySet Name="TestsTables" EntityType="Self.TestsTable" />
+    <EntitySet Name="UsersTables" EntityType="Self.UsersTable" />
+  </EntityContainer>
+</Schema>
